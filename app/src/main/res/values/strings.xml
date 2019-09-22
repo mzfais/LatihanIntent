@@ -7,4 +7,6 @@
     <string name="pindah_with_data">Pindah Activity Dengan Data</string>
     <string name="pindah_activity_dengan_object">Pindah Activity dengan Object</string>
     <string name="pindah_activity_dengan_data">Pindah Activity Dengan Data</string>
+    <string name="kirim">Kirim</string>
+    <string name="masukkan_bilangan_bulat">Masukkan Bilangan Bulat</string>
 </resources>
