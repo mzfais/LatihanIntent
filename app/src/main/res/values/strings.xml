@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">LatihanIntent</string>
+    <string name="activity_ke_2">Activity Ke 2</string>
+    <string name="pindah_activity">Pindah Activity</string>
+    <string name="text_for_result">Pindah Activity Dengan Nilai Kembalian</string>
+    <string name="dial_up_number">Dial Up Number</string>
+    <string name="pindah_with_data">Pindah Activity Dengan Data</string>
+    <string name="pindah_activity_dengan_object">Pindah Activity dengan Object</string>
+    <string name="pindah_activity_dengan_data">Pindah Activity Dengan Data</string>
 </resources>
