@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnPindahResult:
                 Intent resultIntent = new Intent(MainActivity.this, ResultActivity.class);
                 startActivityForResult(resultIntent, REQUEST_CODE);
+                break;
+                // cek link https://developer.android.com/training/basics/intents/result.html
         }
     }
 
