@@ -10,16 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "MainActivity";
     private Button btnPindah, btnPindahData, btnPindahObject, btnDial, btnResult;
     TextView tvHasil;
 
-    private static final int REQUEST_CODE = 100;
+    private static final int REQUEST_CODE = 110;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == ResultActivity.RESULT_CODE) {
+                    if (result.getResultCode() == REQUEST_CODE) {
                         // There are no request codes
                         Intent data = result.getData();
                         int resultNumber = data.getIntExtra(ResultActivity.RESULT_NUMBER, 0);
