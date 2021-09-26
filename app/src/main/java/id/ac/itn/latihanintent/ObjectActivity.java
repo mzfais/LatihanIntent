@@ -18,6 +18,8 @@ public class ObjectActivity extends AppCompatActivity {
 
         // Parcelable adalah suatu interface yang memungkinkan kita melakukan pengiriman objek dari suatu Activity ke Activity lain
         Mahasiswa mhs = getIntent().getParcelableExtra(XTRA_MHS);
-        tvHasil.setText("NIM: "+mhs.getNim() + "\nNama: " + mhs.getNama() + "\nProdi: " + mhs.getProdi() + "\nFakultas:" + mhs.getFakultas());
+        tvHasil.setText("NIM: "+mhs.getNim() + "\nNama: "
+                + mhs.getNama() + "\nProdi: "
+                + mhs.getProdi() + "\nFakultas:" + mhs.getFakultas());
     }
 }
