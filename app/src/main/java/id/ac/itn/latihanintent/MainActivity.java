@@ -1,5 +1,9 @@
 package id.ac.itn.latihanintent;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,25 +16,32 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int REQUEST_CODE = 100;
-    private Button btnPindah, btnPindahData, btnPindahObject, btnDial,btnResult;
+    private Button btnPindah, btnPindahData, btnPindahObject, btnDial, btnResult;
     TextView tvHasil;
+
+    private static final int REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         btnPindah = findViewById(R.id.btnPindah);
-        btnPindahData = findViewById(R.id.btnPindahData);
-        btnPindahObject = findViewById(R.id.btnPindahObject);
-        btnDial = findViewById(R.id.btnDial);
-        btnResult = findViewById(R.id.btnPindahResult);
         btnPindah.setOnClickListener(this);
+
+        btnPindahData = findViewById(R.id.btnPindahData);
         btnPindahData.setOnClickListener(this);
+
+        btnPindahObject = findViewById(R.id.btnPindahObject);
         btnPindahObject.setOnClickListener(this);
+
+        btnDial = findViewById(R.id.btnDial);
         btnDial.setOnClickListener(this);
+
+        btnResult = findViewById(R.id.btnPindahResult);
         btnResult.setOnClickListener(this);
-        tvHasil=findViewById(R.id.tvHasil);
+
+        tvHasil = findViewById(R.id.tvHasil);
     }
 
     @Override
@@ -43,9 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnPindahData:
                 Intent dataIntent = new Intent(MainActivity.this, Main3Activity.class);
                 dataIntent.putExtra(Main3Activity.XTRA_NAME, "Ahmad Faisol");
-                dataIntent.putExtra(Main3Activity.XTRA_AGE, 35);
+                dataIntent.putExtra(Main3Activity.XTRA_AGE, 25);
                 startActivity(dataIntent);
                 break;
+
             case R.id.btnPindahObject:
                 Mahasiswa mhs = new Mahasiswa();
                 mhs.setNim("1718001");
@@ -60,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(objectIntent);
                 break;
             case R.id.btnDial:
-                String noHp = "082213077772";
+                String noHp = "082213077456";
                 Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + noHp));
                 startActivity(dialPhoneIntent);
 
@@ -77,12 +89,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnPindahResult:
                 Intent resultIntent = new Intent(MainActivity.this, ResultActivity.class);
-                startActivityForResult(resultIntent, REQUEST_CODE);
+                startActivityResultLauncher.launch(resultIntent);
+//                startActivityForResult(resultIntent, REQUEST_CODE); // deprecated
                 break;
-                // cek link https://developer.android.com/training/basics/intents/result.html
+            // cek link https://developer.android.com/training/basics/intents/result.html
         }
     }
 
+    ActivityResultLauncher<Intent> startActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == ResultActivity.RESULT_CODE) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        int resultNumber = data.getIntExtra(ResultActivity.RESULT_NUMBER, 0);
+                        tvHasil.setText(String.format("Hasil : %s", resultNumber));
+                    }
+                }
+            });
+
+    /*
+    this method deprecated
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -93,5 +122,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tvHasil.setText(String.format("Hasil : %s", resultNumber));
             }
         }
-    }
+    }*/
 }
