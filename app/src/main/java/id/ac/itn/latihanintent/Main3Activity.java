@@ -9,6 +9,7 @@ public class Main3Activity extends AppCompatActivity {
 
     public static final String XTRA_NAME = "xtra_name";
     public static final String XTRA_AGE = "xtra_age";
+    public static final String XTRA_ALMT = "alamat";
     TextView tvHasil;
 
     @Override
